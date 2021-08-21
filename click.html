@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="container">
+      <textarea id="textarea" name="" id="" cols="30" rows="10"></textarea>
+      <button onclick="addAll()">Add all</button>
+      <button id="btn" onclick="clickAll()">Click all</button>
+   </div>
+</body>
+<script>
+
+   let links = []
+
+   document.querySelector("#btn").disabled = true
+
+   function addAll() {
+      let textarea = document.querySelector("#textarea")
+      const container = document.querySelector("#container")
+
+      if (!textarea.value) return
+
+      links = textarea.value.split("\n")
+      links.forEach(element => {
+         const a = document.createElement("a")
+         a.href = element
+         a.innerText = element
+         a.target = "_blank"
+         a.style.display = "block"
+         container.appendChild(a)
+      });
+      textarea.value = ""
+      document.querySelector("#btn").disabled = false
+   }
+   function clickAll() {
+      links.forEach(link => {
+         window.open(link, "_blank")
+      })
+   }
+</script>
+
+</html>
